@@ -1,0 +1,16 @@
+---
+- name: Check is swap enable
+  shell: swapon
+  register: swap_present
+  changed_when: false
+  ignore_errors: true
+
+- name: If swap is enabled - disable it
+  shell: swapoff -a
+  when: swap_present.stdout != ""
+
+- name: Disable SWAP in fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*\s*swap\s*.*)$'
+    replace: '# \1'

@@ -1,0 +1,6 @@
+---
+- name: Prepare hosts to kubesparay
+  hosts: local
+
+  roles:
+    - prepare-hosts

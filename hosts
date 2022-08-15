@@ -1,0 +1,13 @@
+[master]
+master.local ansible_host=10.40.1.129
+
+[workers]
+node1.local  ansible_host=10.40.1.130
+node2.local  ansible_host=10.40.1.131
+
+[local]
+ansible.local  ansible_host=10.40.1.254
+
+[cluster:children]
+master
+workers
